@@ -172,6 +172,8 @@
     .partner-mini-copy span{font-family:"Courier New",monospace;font-size:10px;letter-spacing:1.2px;opacity:.65}
     .partner-mini:hover .partner-mini-copy span{opacity:.8}
     @media(max-width:560px){.footer-partners{padding:22px 18px 18px}.partner-mini{width:100%}}
+    .release-loading{grid-column:1/-1;border:1px solid #333;padding:26px;font-family:"Courier New",monospace;font-size:11px;letter-spacing:1.3px;color:#aaa;text-align:center}
+    .release-load-error{color:#d9d9d9}
 
   </style>
 </head>
@@ -234,73 +236,8 @@
         <p class="section-note" data-i18n="releases.note">Raw visuals. Distinct identities. No fixed genre.</p>
       </div>
 
-      <div class="release-grid">
-        <article class="release-card featured" data-audio="assets/falling-preview.mp3" data-track="FALLING">
-          <div class="release-audio-badge"><span class="release-audio-dot"></span><span>HOVER TO PREVIEW</span></div>
-          <img src="assets/falling.png" alt="Falling — Dragho x Zanx" />
-          <div class="release-meta">
-            <span>DRAGHO X ZANX</span>
-            <strong>FALLING</strong>
-            <small>14 SEPTEMBER 2026 · LOWCUT//</small>
-            <a class="release-presave" href="https://smartlink.musik.digital/falling-3fb3a" target="_blank" rel="noopener noreferrer">LISTEN NOW ↗</a>
-            <button type="button" class="mobile-preview-btn">PLAY PREVIEW ▶</button>
-          </div>
-        </article>
-        <article class="release-card" data-audio="assets/haunted-preview.mp3" data-track="HAUNTED">
-          <div class="release-audio-badge"><span class="release-audio-dot"></span><span>HOVER TO PREVIEW</span></div>
-          <img src="assets/haunted.png" alt="Haunted — Dragho" />
-          <div class="release-meta">
-            <span>DRAGHO</span>
-            <strong>HAUNTED</strong>
-            <small>23 SEPTEMBER 2026 · LOWCUT//</small>
-            <a class="release-presave" href="https://smartlink.musik.digital/haunted-54205" target="_blank" rel="noopener noreferrer">LISTEN NOW ↗</a>
-            <button type="button" class="mobile-preview-btn">PLAY PREVIEW ▶</button>
-          </div>
-        </article>
-        <article class="release-card" data-audio="assets/close-to-you-preview.mp3" data-track="CLOSE TO YOU">
-          <div class="release-audio-badge"><span class="release-audio-dot"></span><span>HOVER TO PREVIEW</span></div>
-          <img src="assets/close-to-you.png" alt="Close To You — Zanx" />
-          <div class="release-meta">
-            <span>ZANX</span>
-            <strong>CLOSE TO YOU</strong>
-            <small>30 SEPTEMBER 2026 · LOWCUT//</small>
-            <a class="release-presave" href="https://smartlink.musik.digital/close-to-you" target="_blank" rel="noopener noreferrer">PRE-SAVE ↗</a>
-            <button type="button" class="mobile-preview-btn">PLAY PREVIEW ▶</button>
-          </div>
-        </article>
-        <article class="release-card" data-audio="assets/insane-v2-preview.mp3" data-track="INSΛNE V2">
-          <div class="release-audio-badge"><span class="release-audio-dot"></span><span>HOVER TO PREVIEW</span></div>
-          <img src="assets/insane-v2.png" alt="INSΛNE V2 — Zanx" />
-          <div class="release-meta">
-            <span>ZANX</span>
-            <strong>INSΛNE V2</strong>
-            <small>03 OCTOBER 2026 · LOWCUT//</small>
-            <span class="release-presave coming-soon">PRE-SAVE COMING SOON</span>
-            <button type="button" class="mobile-preview-btn">PLAY PREVIEW ▶</button>
-          </div>
-        </article>
-        <article class="release-card" data-audio="assets/let-me-go-preview.mp3" data-track="LET ME GO">
-          <div class="release-audio-badge"><span class="release-audio-dot"></span><span>HOVER TO PREVIEW</span></div>
-          <img src="assets/let-me-go.png" alt="Let Me Go — Zanx" />
-          <div class="release-meta">
-            <span>ZANX</span>
-            <strong>LET ME GO</strong>
-            <small>08 OCTOBER 2026 · LOWCUT//</small>
-            <span class="release-presave coming-soon">PRE-SAVE NOT AVAILABLE</span>
-            <button type="button" class="mobile-preview-btn">PLAY PREVIEW ▶</button>
-          </div>
-        </article>
-        <article class="release-card" data-audio="assets/singularity-preview.mp3" data-track="SINGULARITY">
-          <div class="release-audio-badge"><span class="release-audio-dot"></span><span>HOVER TO PREVIEW</span></div>
-          <img src="assets/singularity.png" alt="Singularity — Fayre x Dro" />
-          <div class="release-meta">
-            <span>FAYRE X DRO</span>
-            <strong>SINGULARITY</strong>
-            <small>14 OCTOBER 2026 · LOWCUT//</small>
-            <span class="release-presave coming-soon">PRE-SAVE COMING SOON</span>
-            <button type="button" class="mobile-preview-btn">PLAY PREVIEW ▶</button>
-          </div>
-        </article>
+      <div class="release-grid" id="releaseGrid" aria-live="polite">
+        <div class="release-loading" id="releaseLoading">LOADING RELEASES...</div>
       </div>
 
       <div class="manifesto-card">
@@ -633,5 +570,166 @@
     });
   })();
   </script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDcLpCPu-3eNKtd3j8w51RdiqCvP6L8WlU",
+      authDomain: "lowcut-artist-portal.firebaseapp.com",
+      projectId: "lowcut-artist-portal",
+      storageBucket: "lowcut-artist-portal.firebasestorage.app",
+      messagingSenderId: "483516737605",
+      appId: "1:483516737605:web:0dc3012d3e1db7db39db2c",
+      measurementId: "G-Q834JF7TQX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const grid = document.getElementById('releaseGrid');
+    let dynamicCards = [];
+    let activeCard = null;
+    let activeAudio = null;
+
+    const esc = (value='') => String(value)
+      .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+      .replaceAll('"','&quot;').replaceAll("'",'&#039;');
+
+    function currentLang(){ return document.documentElement.lang === 'es' ? 'es' : 'en'; }
+
+    function formatDate(value){
+      if(!value) return '';
+      const d = new Date(value + 'T12:00:00');
+      if(Number.isNaN(d.getTime())) return value;
+      const locale = currentLang()==='es' ? 'es-AR' : 'en-US';
+      return new Intl.DateTimeFormat(locale,{day:'2-digit',month:'long',year:'numeric'}).format(d).toUpperCase();
+    }
+
+    function statusMarkup(r){
+      const lang=currentLang();
+      const status=(r.status||'coming_soon').toLowerCase();
+      const link=(r.publicLink||'').trim();
+      if(status==='released'){
+        return link
+          ? `<a class="release-presave" href="${esc(link)}" target="_blank" rel="noopener noreferrer" data-public-status="released">${lang==='es'?'ESCUCHAR AHORA':'LISTEN NOW'} ↗</a>`
+          : `<span class="release-presave coming-soon" data-public-status="released">${lang==='es'?'DISPONIBLE AHORA':'OUT NOW'}</span>`;
+      }
+      if(status==='presave'){
+        return link
+          ? `<a class="release-presave" href="${esc(link)}" target="_blank" rel="noopener noreferrer" data-public-status="presave">PRE-SAVE ↗</a>`
+          : `<span class="release-presave coming-soon" data-public-status="presave">${lang==='es'?'PRE-SAVE PRÓXIMAMENTE':'PRE-SAVE COMING SOON'}</span>`;
+      }
+      return `<span class="release-presave coming-soon" data-public-status="coming_soon">${lang==='es'?'PRÓXIMAMENTE':'COMING SOON'}</span>`;
+    }
+
+    function releaseHTML(r){
+      const title=esc(r.title||'UNTITLED');
+      const artists=Array.isArray(r.artists) ? r.artists.filter(Boolean) : [];
+      const artistText=artists.length ? artists.join(' X ') : 'LOWCUT//';
+      const cover=esc(r.coverPath||'assets/logo-white.png');
+      const preview=esc(r.previewPath||'');
+      const label=esc(r.label||'LOWCUT//');
+      const featured=r.featured===true?' featured':'';
+      const audioAttrs=preview ? ` data-audio="${preview}"` : '';
+      return `<article class="release-card${featured}"${audioAttrs} data-track="${title}">
+        ${preview?'<div class="release-audio-badge"><span class="release-audio-dot"></span><span>HOVER TO PREVIEW</span></div>':''}
+        <img src="${cover}" alt="${title} — ${esc(artistText)}" loading="lazy" />
+        <div class="release-meta">
+          <span>${esc(artistText.toUpperCase())}</span>
+          <strong>${title}</strong>
+          <small data-release-date="${esc(r.releaseDate||'')}">${esc(formatDate(r.releaseDate))} · ${label}</small>
+          ${statusMarkup(r)}
+          ${preview?'<button type="button" class="mobile-preview-btn">PLAY PREVIEW ▶</button>':''}
+        </div>
+      </article>`;
+    }
+
+    function stopPreview(){
+      if(activeAudio){ activeAudio.pause(); activeAudio.currentTime=0; }
+      if(activeCard) activeCard.classList.remove('is-playing');
+      activeAudio=null; activeCard=null;
+    }
+
+    function startPreview(card){
+      if(!card.dataset.audio) return;
+      if(activeCard===card && activeAudio && !activeAudio.paused) return;
+      stopPreview();
+      const audio=new Audio(card.dataset.audio);
+      audio.preload='auto'; audio.volume=.72;
+      activeCard=card; activeAudio=audio; card.classList.add('is-playing');
+      const badge=card.querySelector('.release-audio-badge span:last-child');
+      if(badge) badge.textContent='NOW PLAYING · '+(card.dataset.track||'PREVIEW');
+      audio.addEventListener('ended',()=>{
+        card.classList.remove('is-playing');
+        if(badge) badge.textContent='HOVER TO PREVIEW';
+        const btn=card.querySelector('.mobile-preview-btn'); if(btn) btn.textContent='PLAY PREVIEW ▶';
+        activeCard=null; activeAudio=null;
+      },{once:true});
+      audio.play().catch(()=>{ card.classList.remove('is-playing'); if(badge) badge.textContent='CLICK TO PREVIEW'; });
+    }
+
+    function bindCards(){
+      dynamicCards=[...grid.querySelectorAll('.release-card')];
+      const finePointer=matchMedia('(pointer:fine)').matches;
+      const cursor=document.querySelector('.custom-cursor');
+      dynamicCards.forEach(card=>{
+        const badge=card.querySelector('.release-audio-badge span:last-child');
+        if(finePointer && card.dataset.audio){
+          card.addEventListener('mouseenter',()=>startPreview(card));
+          card.addEventListener('mouseleave',()=>{ if(activeCard===card) stopPreview(); if(badge) badge.textContent='HOVER TO PREVIEW'; });
+        }
+        if(finePointer && cursor){
+          card.addEventListener('mouseenter',()=>cursor.classList.add('is-hover'));
+          card.addEventListener('mouseleave',()=>cursor.classList.remove('is-hover'));
+        }
+        const btn=card.querySelector('.mobile-preview-btn');
+        btn?.addEventListener('click',(e)=>{
+          e.preventDefault(); e.stopPropagation();
+          if(activeCard===card && activeAudio && !activeAudio.paused){
+            stopPreview(); btn.textContent='PLAY PREVIEW ▶'; if(badge) badge.textContent='HOVER TO PREVIEW';
+          } else {
+            grid.querySelectorAll('.mobile-preview-btn').forEach(b=>b.textContent='PLAY PREVIEW ▶');
+            startPreview(card); btn.textContent='STOP PREVIEW ■';
+          }
+        });
+      });
+    }
+
+    function refreshDynamicLanguage(){
+      grid.querySelectorAll('[data-release-date]').forEach(el=>{
+        const date=el.dataset.releaseDate||'';
+        const label=(el.textContent.split('·')[1]||' LOWCUT//').trim();
+        el.textContent=`${formatDate(date)} · ${label}`;
+      });
+      grid.querySelectorAll('[data-public-status]').forEach(el=>{
+        const status=el.dataset.publicStatus; const lang=currentLang();
+        if(status==='released') el.textContent=(lang==='es'?'ESCUCHAR AHORA':'LISTEN NOW')+(el.tagName==='A'?' ↗':'');
+        else if(status==='presave') el.textContent=el.tagName==='A'?'PRE-SAVE ↗':(lang==='es'?'PRE-SAVE PRÓXIMAMENTE':'PRE-SAVE COMING SOON');
+        else el.textContent=lang==='es'?'PRÓXIMAMENTE':'COMING SOON';
+      });
+    }
+
+    async function loadPublicReleases(){
+      try{
+        const snap=await getDocs(collection(db,'publicReleases'));
+        const releases=snap.docs.map(d=>({id:d.id,...d.data()}))
+          .filter(r=>r.visible===true && String(r.status||'').toLowerCase()!=='hidden')
+          .sort((a,b)=>(Number(a.displayOrder)||999)-(Number(b.displayOrder)||999));
+        if(!releases.length){
+          grid.innerHTML='<div class="release-loading">NO PUBLIC RELEASES YET.</div>';
+          return;
+        }
+        grid.innerHTML=releases.map(releaseHTML).join('');
+        bindCards();
+      }catch(err){
+        console.error('LOWCUT publicReleases error:',err);
+        grid.innerHTML='<div class="release-loading release-load-error">COULD NOT LOAD RELEASES.</div>';
+      }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>setTimeout(refreshDynamicLanguage,0)));
+    loadPublicReleases();
+  </script>
+
 </body>
 </html>
