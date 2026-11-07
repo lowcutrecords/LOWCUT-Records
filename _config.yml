@@ -1,0 +1,9 @@
+# GitHub Pages branch builds: keep authoring sources out of the public site.
+exclude:
+  - src
+  - scripts
+  - data
+  - package.json
+  - package-lock.json
+  - node_modules
+  - README.md

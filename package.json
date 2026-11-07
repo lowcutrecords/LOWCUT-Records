@@ -1,0 +1,22 @@
+{
+  "name": "lowcut-records-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "images": "node scripts/images.mjs",
+    "prebuild": "node scripts/images.mjs",
+    "prebuild:fresh": "node scripts/images.mjs",
+    "build": "node scripts/build.mjs",
+    "build:fresh": "node scripts/build.mjs --refresh",
+    "check": "node scripts/check.mjs",
+    "test": "node --test scripts/catalogue.test.mjs",
+    "package": "node scripts/package-site.mjs",
+    "preview": "node scripts/preview.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "sharp": "0.35.5"
+  }
+}

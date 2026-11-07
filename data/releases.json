@@ -1,0 +1,80 @@
+[
+  {
+    "id": "menta",
+    "title": "Menta",
+    "artists": [
+      "Lack"
+    ],
+    "artistIds": [
+      ""
+    ],
+    "releaseDate": "2026-10-23",
+    "coverPath": "assets/releases/MENTA-LACK.png",
+    "previewPath": "assets/releases/menta lack best part.mp3",
+    "publicLink": "https://smartlink.musik.digital/menta",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": true,
+    "displayOrder": 1
+  },
+  {
+    "id": "insanev2",
+    "title": "Insane V2",
+    "artists": [
+      "Zanx"
+    ],
+    "artistIds": [
+      "zanx"
+    ],
+    "releaseDate": "2026-10-03",
+    "coverPath": "assets/releases/INSANEV2-ZANX.png",
+    "previewPath": "assets/releases/insane best part.mp3",
+    "publicLink": "https://smartlink.musik.digital/insane-v2",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": true,
+    "displayOrder": 4
+  },
+  {
+    "id": "singularity",
+    "title": "Singularity",
+    "artists": [
+      "Dro",
+      "Fayre"
+    ],
+    "artistIds": [
+      "dro",
+      "fayre"
+    ],
+    "releaseDate": "2026-10-15",
+    "coverPath": "assets/releases/SINGULARITY - FAYRE & DRO.png",
+    "previewPath": "assets/releases/singularity best part.mp3",
+    "publicLink": "https://smartlink.musik.digital/singularity",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": false,
+    "displayOrder": 6
+  },
+  {
+    "id": "letmego",
+    "title": "Let Me Go",
+    "artists": [
+      "Zanx"
+    ],
+    "artistIds": [
+      "zanx"
+    ],
+    "releaseDate": "2026-10-08",
+    "coverPath": "assets/releases/LET ME GO-ZANX.png",
+    "previewPath": "assets/releases/let me go best part.mp3",
+    "publicLink": "https://smartlink.musik.digital/let-me-go",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": false,
+    "displayOrder": 7
+  }
+]

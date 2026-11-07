@@ -1,0 +1,49 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const base='https://lowcutrecords.github.io/LOWCUT-Records/';
+const manifest=JSON.parse(await fs.readFile(path.join(root,'data/generated-pages.json'),'utf8'));
+const files=['index.html',...manifest];
+const releases=JSON.parse(await fs.readFile(path.join(root,'data/releases.json'),'utf8'));
+const sitemap=await fs.readFile(path.join(root,'sitemap.xml'),'utf8');
+const titles=new Set(),descriptions=new Set();
+let references=0;
+for(const file of files){
+  const html=await fs.readFile(path.join(root,file),'utf8');
+  const route=file==='index.html'?'':file.replace(/index\.html$/,'');
+  const expected=base+route;
+  const title=html.match(/<title>(.*?)<\/title>/)?.[1];
+  const description=html.match(/<meta name="description" content="([^"]+)"/)?.[1];
+  assert(title && !titles.has(title),`Missing/duplicate title: ${file}`);titles.add(title);
+  assert(description && !descriptions.has(description),`Missing/duplicate description: ${file}`);descriptions.add(description);
+  assert.equal((html.match(/<h1\b/g)||[]).length,1,`H1 count: ${file}`);
+  assert(html.includes(`<link rel="canonical" href="${expected}"`),`Canonical: ${file}`);
+  assert(sitemap.includes(`<loc>${expected}</loc>`),`Sitemap: ${file}`);
+  assert(!/noindex|LOADING RELEASES|getDocs\(|firebasejs\//i.test(html),`Dynamic dependency or indexing block: ${file}`);
+  for(const match of html.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)){
+    if(match[1]?.includes('application/json'))JSON.parse(match[2]);else new vm.Script(match[2],{filename:file});
+  }
+  for(const match of html.matchAll(/(?:href|src|data-audio)="([^"]+)"/g)){
+    const ref=match[1].replace(/&amp;/g,'&');
+    if(/^(?:https?:|mailto:|#)/.test(ref))continue;
+    const url=new URL(ref,expected);
+    assert(url.pathname.startsWith('/LOWCUT-Records/'),`Base path: ${ref} in ${file}`);
+    let local=decodeURIComponent(url.pathname.slice('/LOWCUT-Records/'.length));
+    if(!local||local.endsWith('/'))local+='index.html';
+    await fs.access(path.join(root,local));references++;
+    if(url.hash && local.endsWith('.html')){
+      const target=await fs.readFile(path.join(root,local),'utf8');
+      assert(target.includes(`id="${url.hash.slice(1)}"`),`Missing fragment: ${ref}`);
+    }
+  }
+}
+const home=await fs.readFile(path.join(root,'index.html'),'utf8');
+for(const r of releases){assert(r.visible===true && r.status!=='hidden');assert(home.includes(`data-track="${r.title}"`),`Missing initial release: ${r.title}`);}
+const template=(await fs.readFile(path.join(root,'src/home.html'),'utf8')).replace(/\r\n/g,'\n');
+assert.equal(home.match(/<form[\s\S]*?<\/form>/)[0],template.match(/<form[\s\S]*?<\/form>/)[0],'Form changed');
+assert.equal((sitemap.match(/<loc>/g)||[]).length,files.length);
+const ui=await fs.readFile(path.join(root,'catalogue-ui.js'),'utf8');new vm.Script(ui);
+console.log(`PASS: ${files.length} pages, ${releases.length} initial HTML releases, unique metadata, canonical/sitemap agreement, ${references} local links/assets, script syntax and unchanged form.`);
