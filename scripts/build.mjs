@@ -7,8 +7,7 @@ import {structuredData} from './structured-data.mjs';
 import {responsiveImages} from './responsive-images.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const base = '/LOWCUT-Records/';
-const origin = 'https://lowcutrecords.github.io';
+import {base,origin} from './site-config.mjs';
 let imageVariants={};
 try{imageVariants=JSON.parse(await fs.readFile(path.join(root,'data/image-variants.json'),'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
 const optimized=value=>imageVariants[value]?.path||value;

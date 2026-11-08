@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {siteUrl} from './site-config.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const output=path.resolve(root,'_site');
 // A fixed, verified child directory is the only recursively replaced target.
@@ -28,7 +29,7 @@ await fs.writeFile(path.join(output,'catalogue-state.json'),JSON.stringify({fing
 let changed=true;
 if(process.argv.includes('--compare-live')){
   try{
-    const response=await fetch('https://lowcutrecords.github.io/LOWCUT-Records/catalogue-state.json',{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});
+    const response=await fetch(new URL('catalogue-state.json',siteUrl),{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});
     if(response.ok)changed=(await response.json()).fingerprint!==fingerprint;
   }catch{console.warn('Could not compare published fingerprint; treating artifact as changed.');}
 }

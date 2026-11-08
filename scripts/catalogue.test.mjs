@@ -42,7 +42,7 @@ test('build creates new profiles/releases, keeps URLs on rename and removes hidd
   // All test writes stay under a fresh OS temporary directory. No Firebase calls.
   try{
     await fs.mkdir(path.join(temp,'scripts'));await fs.mkdir(path.join(temp,'src'));await fs.mkdir(path.join(temp,'data'));
-    for(const file of ['build.mjs','catalogue.mjs','localize.mjs','home-i18n.mjs','structured-data.mjs','responsive-images.mjs'])await fs.copyFile(path.join(source,'scripts',file),path.join(temp,'scripts',file));
+    for(const file of ['build.mjs','catalogue.mjs','localize.mjs','home-i18n.mjs','structured-data.mjs','responsive-images.mjs','site-config.mjs'])await fs.copyFile(path.join(source,'scripts',file),path.join(temp,'scripts',file));
     await fs.copyFile(path.join(source,'src/home.html'),path.join(temp,'src/home.html'));
     const artists=[{...artist,id:'demo-artist',slug:'demo-artist',name:'Demo Artist',bioEs:'Biografía de prueba en español.'}];
     const releases=[{...release,id:'demo-track',slug:'demo-track',title:'Demo Track',artists:['Demo Artist'],artistIds:['demo-artist'],coverPath:'assets/demo.png',releaseDate:'2026-11-07',label:'LOWCUT// Records'}];
@@ -51,7 +51,7 @@ test('build creates new profiles/releases, keeps URLs on rename and removes hidd
     await save();run();
     const spanish=await fs.readFile(path.join(temp,'es/artistas/demo-artist/index.html'),'utf8');
     assert(spanish.includes('Biografía de prueba en español.'));assert(spanish.includes('<html lang="es">'));
-    assert(spanish.includes('href="/LOWCUT-Records/en/artistas/demo-artist/"'));assert(spanish.includes('hreflang="es"'));
+    assert(spanish.includes('href="/en/artistas/demo-artist/"'));assert(spanish.includes('hreflang="es"'));
     assert(spanish.includes('cursor.js'));assert(spanish.includes('view-transition-name: artist-demo-artist'));
     const partners=[{id:'fixture',name:'Partner Fixture',imagePath:'assets/fixture.webp',url:'https://example.com/',taglineEn:'Partner English',taglineEs:'Partner Español',visible:true,displayOrder:1}];
     await fs.writeFile(path.join(temp,'data/partners.json'),JSON.stringify(partners));run();

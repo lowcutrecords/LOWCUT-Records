@@ -1,5 +1,9 @@
 name: Build public catalogue (publication gated)
 on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/site-config.mjs
   workflow_dispatch:
     inputs:
       publish:
@@ -42,12 +46,12 @@ jobs:
           include-hidden-files: true
           retention-days: 7
       - uses: actions/upload-pages-artifact@v4
-        if: steps.package.outputs.changed == 'true' && vars.ENABLE_SITE_PUBLISH == 'true' && (github.event_name == 'schedule' || inputs.publish == true)
+        if: steps.package.outputs.changed == 'true' && vars.ENABLE_SITE_PUBLISH == 'true' && (github.event_name == 'push' || github.event_name == 'schedule' || inputs.publish == true)
         with:
           path: _site/
   deploy:
     needs: build
-    if: needs.build.outputs.changed == 'true' && vars.ENABLE_SITE_PUBLISH == 'true' && (github.event_name == 'schedule' || inputs.publish == true)
+    if: needs.build.outputs.changed == 'true' && vars.ENABLE_SITE_PUBLISH == 'true' && (github.event_name == 'push' || github.event_name == 'schedule' || inputs.publish == true)
     runs-on: ubuntu-latest
     permissions:
       pages: write

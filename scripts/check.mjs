@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../',import.meta.url));
-const base='https://lowcutrecords.github.io/LOWCUT-Records/';
+import {base as basePath,siteUrl as base} from './site-config.mjs';
 const manifest=JSON.parse(await fs.readFile(path.join(root,'data/generated-pages.json'),'utf8'));
 const files=['index.html',...manifest];
 const releases=JSON.parse(await fs.readFile(path.join(root,'data/releases.json'),'utf8'));
@@ -13,6 +13,7 @@ const titles=new Set(),descriptions=new Set();
 let references=0;
 for(const file of files){
   const html=await fs.readFile(path.join(root,file),'utf8');
+  assert(!html.includes('/LOWCUT-Records/'),`Legacy project path: ${file}`);
   const route=file==='index.html'?'':file.replace(/index\.html$/,'');
   const localized=/^(en|es)\//.test(file);
   const expected=base+(localized?route:'en/'+route);
@@ -43,8 +44,8 @@ for(const file of files){
     const ref=match[1].replace(/&amp;/g,'&');
     if(/^(?:https?:|mailto:|#)/.test(ref))continue;
     const url=new URL(ref,expected);
-    assert(url.pathname.startsWith('/LOWCUT-Records/'),`Base path: ${ref} in ${file}`);
-    let local=decodeURIComponent(url.pathname.slice('/LOWCUT-Records/'.length));
+    assert(url.pathname.startsWith(basePath),`Base path: ${ref} in ${file}`);
+    let local=decodeURIComponent(url.pathname.slice(basePath.length));
     if(!local||local.endsWith('/'))local+='index.html';
     await fs.access(path.join(root,local));references++;
     if(url.hash && local.endsWith('.html')){
