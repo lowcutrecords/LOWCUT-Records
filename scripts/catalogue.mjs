@@ -1,5 +1,5 @@
 // Shared public-data boundary. Never read users, private releases, contracts or login logs.
-const allowedRelease=['id','slug','title','artists','artistIds','releaseDate','coverPath','previewPath','publicLink','label','status','visible','featured','displayOrder','description','descriptionEn','descriptionEs','genre','credits','creditsEn','creditsEs'];
+const allowedRelease=['id','slug','title','artists','artistIds','releaseDate','releaseType','coverPath','previewPath','publicLink','label','status','visible','featured','displayOrder','description','descriptionEn','descriptionEs','genre','credits','creditsEn','creditsEs'];
 const allowedArtist=['id','slug','name','aliases','imagePath','taglineEn','taglineEs','location','genres','bioEn','bioEs','links','visible','displayOrder'];
 const pick=(o,keys)=>Object.fromEntries(keys.filter(k=>o[k]!==undefined).map(k=>[k,o[k]]));
 export function cleanCatalogue(releases,artists){

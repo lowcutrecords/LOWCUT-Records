@@ -34,6 +34,16 @@ for(const directory of roots){
       if(check.format!=='webp'||check.width!==sourceMeta.width||check.height!==sourceMeta.height||(needsAlpha&&!check.hasAlpha))throw new Error(`Image validation failed: ${relative}`);
       row={path:webpPath,width:check.width,height:check.height,bytes:result.size,sourceBytes:source.length,sourceHash,recipe};
     }
+    // Browsers should not download poster-sized artwork for small mobile cards.
+    if(!lossless&&row.width>480){
+      const responsive=[];
+      for(const width of [480,960,1600].filter(w=>w<row.width)){
+        const variant=output.replace(/\.webp$/,`-${width}w.webp`);
+        if(!row.responsive?.some(v=>v.width===width)||row.sourceHash!==previous[relative]?.sourceHash||!(await fs.stat(variant).catch(()=>null)))await sharp(source).resize({width,withoutEnlargement:true}).webp({quality:82,alphaQuality:100,effort:6}).toFile(variant);
+        const meta=await sharp(variant).metadata();responsive.push({path:path.relative(directory,variant).split(path.sep).join('/'),width:meta.width,height:meta.height,bytes:(await fs.stat(variant)).size});
+      }
+      row.responsive=responsive;
+    }
     manifest[relative]=row;all.push({project:path.basename(directory),original:relative,...row});
   }));
   await fs.mkdir(path.dirname(manifestFile),{recursive:true});

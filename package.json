@@ -9,7 +9,7 @@
     "build": "node scripts/build.mjs",
     "build:fresh": "node scripts/build.mjs --refresh",
     "check": "node scripts/check.mjs",
-    "test": "node --test scripts/catalogue.test.mjs",
+    "test": "node --test scripts/catalogue.test.mjs scripts/structured-data.test.mjs",
     "package": "node scripts/package-site.mjs",
     "preview": "node scripts/preview.mjs"
   },

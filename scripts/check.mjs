@@ -29,9 +29,15 @@ for(const file of files){
   }
   assert(html.includes('cursor.js')&&html.includes('cursor.css')&&html.includes('class="custom-cursor"'),`Shared cursor: ${file}`);
   if(localized)assert(html.includes(`<html lang="${file.slice(0,2)}">`),`HTML language: ${file}`);
+  const structured=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]||'null');
+  assert(structured?.['@context']==='https://schema.org'&&Array.isArray(structured['@graph']),`Structured data: ${file}`);
+  assert(structured['@graph'].some(x=>x['@type']==='Organization'),`Organization: ${file}`);
+  if(/(?:artistas|lanzamientos)\//.test(file))assert(structured['@graph'].some(x=>x['@type']==='BreadcrumbList'),`Breadcrumbs: ${file}`);
+  if(/artistas\//.test(file))assert(structured['@graph'].some(x=>['Person','MusicGroup'].includes(x['@type'])),`Artist entity: ${file}`);
+  if(/lanzamientos\//.test(file))assert(structured['@graph'].some(x=>['MusicRecording','MusicAlbum'].includes(x['@type'])),`Release entity: ${file}`);
   assert(!/noindex|LOADING RELEASES|getDocs\(|firebasejs\//i.test(html),`Dynamic dependency or indexing block: ${file}`);
   for(const match of html.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)){
-    if(match[1]?.includes('application/json'))JSON.parse(match[2]);else new vm.Script(match[2],{filename:file});
+    if(/application\/(?:ld\+)?json/.test(match[1]||''))JSON.parse(match[2]);else new vm.Script(match[2],{filename:file});
   }
   for(const match of html.matchAll(/(?:href|src|data-audio)="([^"]+)"/g)){
     const ref=match[1].replace(/&amp;/g,'&');

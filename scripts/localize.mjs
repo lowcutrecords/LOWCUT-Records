@@ -53,8 +53,15 @@ export function localizedPages(original,{artists,releases,template,base,origin,p
           const newDate=r.releaseDate?new Intl.DateTimeFormat('es-AR',{day:'2-digit',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(r.releaseDate+'T12:00:00Z')).toUpperCase():'';
           if(oldDate)html=html.replaceAll(oldDate,newDate);
           html=html.replaceAll(esc(`${r.title} by ${r.artists.join(' & ')}. ${r.label}.`),esc(`${r.title} de ${r.artists.join(' & ')}. ${r.label}.`));
-          if(r.descriptionEs)html=html.replaceAll(paragraphs(r.descriptionEn||r.description),paragraphs(r.descriptionEs));
-          if(r.creditsEs&&r.credits)html=html.replaceAll(esc(r.credits),esc(r.creditsEs));
+          const englishBody=r.descriptionEn||r.description||`${r.title} by ${r.artists.join(' & ')}. ${r.label}.`;
+          if(r.descriptionEs){
+            html=html.replaceAll(paragraphs(englishBody),paragraphs(r.descriptionEs));
+            const before=esc((r.descriptionEn||r.description||'').trim().replace(/\s+/g,' ').slice(0,180));
+            const after=esc(r.descriptionEs.trim().replace(/\s+/g,' ').slice(0,180));
+            if(before)html=html.replaceAll(`content="${before}"`,`content="${after}"`);
+          }
+          const englishCredits=r.creditsEn||r.credits;
+          if(r.creditsEs&&englishCredits)html=html.replaceAll(`<p>${esc(englishCredits)}</p>`,`<p>${esc(r.creditsEs)}</p>`);
           const old=esc(`${r.title} by ${r.artists.join(' & ')} — ${r.label}${r.releaseDate?', released '+newDate:''}. Listen to the preview and find streaming links.`);
           const translated=esc(`${r.title} de ${r.artists.join(' & ')} — ${r.label}. ${newDate}. Descubrí su música y encontrá enlaces a plataformas.`);
           html=html.replaceAll(old,translated);

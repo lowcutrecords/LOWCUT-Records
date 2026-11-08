@@ -2,3 +2,4 @@
 .release-title{font-size:28px;font-weight:700;letter-spacing:-1px}.release-meta>span{text-transform:uppercase}@media(max-width:560px){.release-title{font-size:22px}}
 
 .lang-switch a,.mobile-lang a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}.detail-lang-switch{margin-left:8px;flex-shrink:0}.translation-note{font:12px/1.6 "Courier New",monospace;color:#aaa}@media(max-width:700px){.detail-header-links{display:none}.detail-page .site-header{justify-content:space-between}.detail-lang-switch{margin-left:auto}}
+@media(pointer:coarse){.lang-btn,.profile-link,.release-presave,.detail-header-links a,.mobile-preview-btn{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}.profile-link{margin:4px 4px 4px 0}}
