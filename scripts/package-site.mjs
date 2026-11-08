@@ -8,7 +8,7 @@ const output=path.resolve(root,'_site');
 if(path.dirname(output)!==path.resolve(root)||path.basename(output)!=='_site')throw new Error('Invalid artifact directory');
 await fs.rm(output,{recursive:true,force:true});await fs.mkdir(output);
 const pages=JSON.parse(await fs.readFile(path.join(root,'data/generated-pages.json'),'utf8'));
-const publicFiles=['index.html','styles.css','detail.css','catalogue-ui.js','cursor.css','cursor.js','site-ui.js','transitions.css','sitemap.xml',...pages];
+const publicFiles=['index.html','styles.css','detail.css','catalogue-ui.js','cursor.css','cursor.js','site-ui.js','transitions.css','sitemap.xml','google0eb8118854d822cb.html',...pages];
 for(const file of publicFiles){
   if(file.includes('..')||path.isAbsolute(file))throw new Error('Invalid public path');
   const target=path.join(output,file);await fs.mkdir(path.dirname(target),{recursive:true});await fs.copyFile(path.join(root,file),target);
