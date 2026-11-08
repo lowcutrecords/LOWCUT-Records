@@ -1,5 +1,5 @@
 // Shared public-data boundary. Never read users, private releases, contracts or login logs.
-const allowedRelease=['id','slug','title','artists','artistIds','releaseDate','coverPath','previewPath','publicLink','label','status','visible','featured','displayOrder','description','genre','credits'];
+const allowedRelease=['id','slug','title','artists','artistIds','releaseDate','coverPath','previewPath','publicLink','label','status','visible','featured','displayOrder','description','descriptionEn','descriptionEs','genre','credits','creditsEn','creditsEs'];
 const allowedArtist=['id','slug','name','aliases','imagePath','taglineEn','taglineEs','location','genres','bioEn','bioEs','links','visible','displayOrder'];
 const pick=(o,keys)=>Object.fromEntries(keys.filter(k=>o[k]!==undefined).map(k=>[k,o[k]]));
 export function cleanCatalogue(releases,artists){
@@ -33,19 +33,19 @@ function decode(v){
   return null;
 }
 export async function readPublicCollection(name,fetcher=fetch){
-  if(!['publicReleases','publicArtists'].includes(name))throw new Error('Collection is not public catalogue');
+  if(!['publicReleases','publicArtists','publicPartners'].includes(name))throw new Error('Collection is not public catalogue');
   const rows=[];let token='';
   do{
     const url=new URL(`https://firestore.googleapis.com/v1/projects/lowcut-artist-portal/databases/(default)/documents/${name}`);
     url.searchParams.set('pageSize','100');if(token)url.searchParams.set('pageToken',token);
     // Rules are not filters: do not retrieve drafts anonymously when publicArtists rules require visible=true.
     // publicArtists is queried below via runQuery instead of listDocuments.
-    if(name==='publicArtists')break;
+    if(name!=='publicReleases')break;
     const response=await fetcher(url,{signal:AbortSignal.timeout(30000)});
     if(!response.ok)throw new Error(`${name}: Firebase ${response.status}. No cached fallback used.`);
     const json=await response.json();rows.push(...(json.documents||[]));token=json.nextPageToken||'';
   }while(token);
-  if(name==='publicArtists'){
+  if(name!=='publicReleases'){
     // A paginated ordered query keeps admin drafts unreadable to anonymous visitors.
     let lastName;
     while(true){

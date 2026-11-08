@@ -14,14 +14,21 @@ let references=0;
 for(const file of files){
   const html=await fs.readFile(path.join(root,file),'utf8');
   const route=file==='index.html'?'':file.replace(/index\.html$/,'');
-  const expected=base+route;
+  const localized=/^(en|es)\//.test(file);
+  const expected=base+(localized?route:'en/'+route);
   const title=html.match(/<title>(.*?)<\/title>/)?.[1];
   const description=html.match(/<meta name="description" content="([^"]+)"/)?.[1];
-  assert(title && !titles.has(title),`Missing/duplicate title: ${file}`);titles.add(title);
-  assert(description && !descriptions.has(description),`Missing/duplicate description: ${file}`);descriptions.add(description);
+  assert(title && (!localized||!titles.has(title)),`Missing/duplicate title: ${file}`);if(localized)titles.add(title);
+  assert(description && (!localized||!descriptions.has(description)),`Missing/duplicate description: ${file}`);if(localized)descriptions.add(description);
   assert.equal((html.match(/<h1\b/g)||[]).length,1,`H1 count: ${file}`);
   assert(html.includes(`<link rel="canonical" href="${expected}"`),`Canonical: ${file}`);
   assert(sitemap.includes(`<loc>${expected}</loc>`),`Sitemap: ${file}`);
+  for(const language of ['en','es']){
+    const logical=localized?route.slice(3):route;
+    assert(html.includes(`hreflang="${language}" href="${base+language+'/'+logical}"`),`Language alternate: ${file}`);
+  }
+  assert(html.includes('cursor.js')&&html.includes('cursor.css')&&html.includes('class="custom-cursor"'),`Shared cursor: ${file}`);
+  if(localized)assert(html.includes(`<html lang="${file.slice(0,2)}">`),`HTML language: ${file}`);
   assert(!/noindex|LOADING RELEASES|getDocs\(|firebasejs\//i.test(html),`Dynamic dependency or indexing block: ${file}`);
   for(const match of html.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)){
     if(match[1]?.includes('application/json'))JSON.parse(match[2]);else new vm.Script(match[2],{filename:file});
@@ -44,6 +51,6 @@ const home=await fs.readFile(path.join(root,'index.html'),'utf8');
 for(const r of releases){assert(r.visible===true && r.status!=='hidden');assert(home.includes(`data-track="${r.title}"`),`Missing initial release: ${r.title}`);}
 const template=(await fs.readFile(path.join(root,'src/home.html'),'utf8')).replace(/\r\n/g,'\n');
 assert.equal(home.match(/<form[\s\S]*?<\/form>/)[0],template.match(/<form[\s\S]*?<\/form>/)[0],'Form changed');
-assert.equal((sitemap.match(/<loc>/g)||[]).length,files.length);
+assert.equal((sitemap.match(/<loc>/g)||[]).length,files.filter(f=>/^(en|es)\//.test(f)).length);
 const ui=await fs.readFile(path.join(root,'catalogue-ui.js'),'utf8');new vm.Script(ui);
 console.log(`PASS: ${files.length} pages, ${releases.length} initial HTML releases, unique metadata, canonical/sitemap agreement, ${references} local links/assets, script syntax and unchanged form.`);

@@ -33,7 +33,7 @@ test('paginate public artists using a visible-only query',async()=>{
     return {ok:true,json:async()=>Array.from({length:100},(_,i)=>({document:{name:'projects/p/databases/(default)/documents/publicArtists/artist'+i,fields:{name:{stringValue:'Artist'}}}}))};
   });assert.equal(result.length,100);assert.equal(calls,2);
 });
-test('only the two public collections can be read',async()=>{
+test('private collections cannot be read by the public builder',async()=>{
   await assert.rejects(readPublicCollection('users'),/not public/);
 });
 test('build creates new profiles/releases, keeps URLs on rename and removes hidden pages',async()=>{
@@ -42,13 +42,22 @@ test('build creates new profiles/releases, keeps URLs on rename and removes hidd
   // All test writes stay under a fresh OS temporary directory. No Firebase calls.
   try{
     await fs.mkdir(path.join(temp,'scripts'));await fs.mkdir(path.join(temp,'src'));await fs.mkdir(path.join(temp,'data'));
-    for(const file of ['build.mjs','catalogue.mjs'])await fs.copyFile(path.join(source,'scripts',file),path.join(temp,'scripts',file));
+    for(const file of ['build.mjs','catalogue.mjs','localize.mjs','home-i18n.mjs'])await fs.copyFile(path.join(source,'scripts',file),path.join(temp,'scripts',file));
     await fs.copyFile(path.join(source,'src/home.html'),path.join(temp,'src/home.html'));
-    const artists=[{...artist,id:'demo-artist',slug:'demo-artist',name:'Demo Artist'}];
+    const artists=[{...artist,id:'demo-artist',slug:'demo-artist',name:'Demo Artist',bioEs:'Biografía de prueba en español.'}];
     const releases=[{...release,id:'demo-track',slug:'demo-track',title:'Demo Track',artists:['Demo Artist'],artistIds:['demo-artist'],coverPath:'assets/demo.png',releaseDate:'2026-11-07',label:'LOWCUT// Records'}];
     const save=async()=>{await fs.writeFile(path.join(temp,'data/artists.json'),JSON.stringify(artists));await fs.writeFile(path.join(temp,'data/releases.json'),JSON.stringify(releases));};
     const run=()=>execFileSync(process.execPath,[path.join(temp,'scripts/build.mjs')],{stdio:'pipe'});
     await save();run();
+    const spanish=await fs.readFile(path.join(temp,'es/artistas/demo-artist/index.html'),'utf8');
+    assert(spanish.includes('Biografía de prueba en español.'));assert(spanish.includes('<html lang="es">'));
+    assert(spanish.includes('href="/LOWCUT-Records/en/artistas/demo-artist/"'));assert(spanish.includes('hreflang="es"'));
+    assert(spanish.includes('cursor.js'));assert(spanish.includes('view-transition-name: artist-demo-artist'));
+    const partners=[{id:'fixture',name:'Partner Fixture',imagePath:'assets/fixture.webp',url:'https://example.com/',taglineEn:'Partner English',taglineEs:'Partner Español',visible:true,displayOrder:1}];
+    await fs.writeFile(path.join(temp,'data/partners.json'),JSON.stringify(partners));run();
+    assert((await fs.readFile(path.join(temp,'es/index.html'),'utf8')).includes('Partner Español'));
+    partners[0].visible=false;await fs.writeFile(path.join(temp,'data/partners.json'),JSON.stringify(partners));run();
+    assert(!(await fs.readFile(path.join(temp,'en/index.html'),'utf8')).includes('Partner Fixture'));
     let page=await fs.readFile(path.join(temp,'artistas/demo-artist/index.html'),'utf8');assert(page.includes('Demo Track'));
     artists[0].name='Renamed Artist';artists[0].aliases=['Demo Artist'];releases[0].title='Renamed Track';
     await save();run();page=await fs.readFile(path.join(temp,'lanzamientos/demo-track/index.html'),'utf8');assert(page.includes('Renamed Track'));assert(page.includes('Renamed Artist'));
@@ -56,6 +65,8 @@ test('build creates new profiles/releases, keeps URLs on rename and removes hidd
     artists[0].visible=false;releases[0].visible=false;await save();run();
     await assert.rejects(fs.access(path.join(temp,'artistas/demo-artist/index.html')));
     await assert.rejects(fs.access(path.join(temp,'lanzamientos/demo-track/index.html')));
+    await assert.rejects(fs.access(path.join(temp,'es/lanzamientos/demo-track/index.html')));
+    await assert.rejects(fs.access(path.join(temp,'en/artistas/demo-artist/index.html')));
     assert(!(await fs.readFile(path.join(temp,'sitemap.xml'),'utf8')).includes('demo-track'));
   }finally{
     if(path.dirname(temp)!==os.tmpdir()||!path.basename(temp).startsWith('lowcut-catalogue-test-'))throw new Error('Unsafe test cleanup path');
