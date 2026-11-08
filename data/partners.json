@@ -1,0 +1,12 @@
+[
+  {
+    "id": "bichitostv",
+    "name": "BichitosTV",
+    "imagePath": "assets/bichitostv.webp",
+    "url": "https://www.twitch.tv/bichitostv",
+    "taglineEn": "STREAMING PARTNER · TWITCH ↗",
+    "taglineEs": "PARTNER DE STREAMING · TWITCH ↗",
+    "visible": true,
+    "displayOrder": 1
+  }
+]
