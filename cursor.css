@@ -1,0 +1,10 @@
+/* Shared LOWCUT cursor: same 18/34 px circle and 12x28 px input shape as the home. */
+.custom-cursor{display:none}
+@media(pointer:fine){
+  html.has-custom-cursor,html.has-custom-cursor body,html.has-custom-cursor a,html.has-custom-cursor button,html.has-custom-cursor input,html.has-custom-cursor textarea,html.has-custom-cursor label,html.has-custom-cursor select,html.has-custom-cursor summary{cursor:none!important}
+  .custom-cursor{display:block;position:fixed;left:0;top:0;width:18px;height:18px;border-radius:50%;background:#050505;border:2px solid #fff;z-index:99999;pointer-events:none;transform:translate(-50%,-50%);transition:width .14s ease,height .14s ease,background .14s ease;box-shadow:0 0 0 1px #000;will-change:left,top;visibility:hidden}
+  .custom-cursor.is-visible{visibility:visible}
+  .custom-cursor.is-hover{width:34px;height:34px;background:#000}
+  .custom-cursor.is-input{width:12px;height:28px;border-radius:2px}
+}
+@media(prefers-reduced-motion:reduce){.custom-cursor{transition:none}}

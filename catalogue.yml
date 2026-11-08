@@ -1,0 +1,60 @@
+name: Build public catalogue (publication gated)
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish only after review and ENABLE_SITE_PUBLISH=true'
+        type: boolean
+        default: false
+  schedule:
+    # GitHub may delay scheduled jobs; this is not an immediate-save webhook.
+    - cron: '17,47 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: lowcut-public-catalogue
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.event_name != 'schedule' || vars.ENABLE_CATALOGUE_SYNC == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      changed: ${{ steps.package.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: npm run test
+      - run: npm run build:fresh
+        env:
+          ENABLE_PARTNER_SYNC: ${{ vars.ENABLE_PARTNER_SYNC }}
+      - run: npm run check
+      - id: package
+        run: node scripts/package-site.mjs --compare-live
+      - uses: actions/upload-artifact@v4
+        if: steps.package.outputs.changed == 'true'
+        with:
+          name: lowcut-review
+          path: _site/
+          include-hidden-files: true
+          retention-days: 7
+      - uses: actions/upload-pages-artifact@v4
+        if: steps.package.outputs.changed == 'true' && vars.ENABLE_SITE_PUBLISH == 'true' && (github.event_name == 'schedule' || inputs.publish == true)
+        with:
+          path: _site/
+  deploy:
+    needs: build
+    if: needs.build.outputs.changed == 'true' && vars.ENABLE_SITE_PUBLISH == 'true' && (github.event_name == 'schedule' || inputs.publish == true)
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

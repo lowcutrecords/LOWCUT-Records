@@ -1,0 +1,299 @@
+{
+  "assets/ bichitostv.png": {
+    "path": "assets/ bichitostv.webp",
+    "width": 2348,
+    "height": 2325,
+    "bytes": 30574,
+    "sourceBytes": 96318,
+    "sourceHash": "95a2eff90ac9d5ea89bcca3539ce8d642d5da16913f3cfb9a3066b0efbe5cae7",
+    "recipe": "webp-lossless-effort6"
+  },
+  "assets/artist-dragho.png": {
+    "path": "assets/artist-dragho.webp",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 605732,
+    "sourceBytes": 3868596,
+    "sourceHash": "b65ed82f1cde38c04113278194a47b21ccdf336897015643acfa73564c27ae33",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/artist-dro.png": {
+    "path": "assets/artist-dro.webp",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 538744,
+    "sourceBytes": 3697452,
+    "sourceHash": "f0e28c7c78baa3224eea1a0c22661d5f39da7529bbb738f91b38acee6cc46665",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/artist-fayre.png": {
+    "path": "assets/artist-fayre.webp",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 479066,
+    "sourceBytes": 3447095,
+    "sourceHash": "0b9d022f9f9afb12a21c391100df1ed1dd49d97ef40aff5596976c3fc7713d3d",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/artist-zanx.png": {
+    "path": "assets/artist-zanx.webp",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 567248,
+    "sourceBytes": 3798340,
+    "sourceHash": "e03ab063bcfbbdb952d7a9e0436ac26e69eb021e7703f42144ea25abd88d6730",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/banner-black.png": {
+    "path": "assets/banner-black.webp",
+    "width": 1916,
+    "height": 821,
+    "bytes": 395810,
+    "sourceBytes": 3619129,
+    "sourceHash": "efd25a1becd42554f171c7bbafc2f7ddc407ac685e40ecf942e3e1c0017cc803",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/banner-white.png": {
+    "path": "assets/banner-white.webp",
+    "width": 1916,
+    "height": 821,
+    "bytes": 572800,
+    "sourceBytes": 4063699,
+    "sourceHash": "1f0708baa158155912053442a933d8cbb4f4bcbe34e95f363c021507fca55e86",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/bichitostv.png": {
+    "path": "assets/bichitostv.webp",
+    "width": 2048,
+    "height": 2027,
+    "bytes": 50722,
+    "sourceBytes": 220142,
+    "sourceHash": "d8362721a437655c6c3546986f311cbfc7c2019ea2a8e480077244fdb2364654",
+    "recipe": "webp-lossless-effort6"
+  },
+  "assets/close-to-you.png": {
+    "path": "assets/close-to-you.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 517596,
+    "sourceBytes": 3893025,
+    "sourceHash": "ee5fbef4ec235f6cbec5b38eaea4ffc6a84367cc1c9e4e8a3bd00397c3b8dd4f",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/falling.png": {
+    "path": "assets/falling.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 564992,
+    "sourceBytes": 4098951,
+    "sourceHash": "6b9e8db3d284a1a9549f0b8ab266af2ee19ec12ea8d6d16216892254420efde2",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/favicon.png": {
+    "path": "assets/favicon.webp",
+    "width": 512,
+    "height": 512,
+    "bytes": 201872,
+    "sourceBytes": 381619,
+    "sourceHash": "8b8f46a7d6ecdb809b2225f3478d28883f808bd95efd183ca803d3872a0e4ca8",
+    "recipe": "webp-lossless-effort6"
+  },
+  "assets/haunted.png": {
+    "path": "assets/haunted.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 549660,
+    "sourceBytes": 4022642,
+    "sourceHash": "d7bf58f525878911d3b09d34be99c29c6545e502a3b2f66aa7df08db15001abe",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/insane-v2.png": {
+    "path": "assets/insane-v2.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 396076,
+    "sourceBytes": 3545033,
+    "sourceHash": "22ed48fe9bb2c65819f5b8124505dc0362cb85bb8aabcdf969b7f981f4b4cd9a",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/let-me-go.png": {
+    "path": "assets/let-me-go.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 532562,
+    "sourceBytes": 3960077,
+    "sourceHash": "4b161133f8d461f98bfd76c614a33f7fcb1c4462ea19e4547717753e989b6400",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/logo-black.png": {
+    "path": "assets/logo-black.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 720416,
+    "sourceBytes": 1141370,
+    "sourceHash": "f6cb9c3fb0e1efcdacf4f0e59606da58b81fb2ad2605317580ca908fa724ddd4",
+    "recipe": "webp-lossless-effort6"
+  },
+  "assets/logo-white.png": {
+    "path": "assets/logo-white.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 538360,
+    "sourceBytes": 1109317,
+    "sourceHash": "d2ce3fee1366f7c6e143e76e2ff3bc9e1c33e4616b6f2db3deb9ce6d9afe0a59",
+    "recipe": "webp-lossless-effort6"
+  },
+  "assets/promo-square-new.png": {
+    "path": "assets/promo-square-new.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 323588,
+    "sourceBytes": 3057900,
+    "sourceHash": "5d92f261d21737198027b05ffe9c3c94cfd115986edaf0c542bd8523bcab0422",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/promo-vertical.png": {
+    "path": "assets/promo-vertical.webp",
+    "width": 941,
+    "height": 1672,
+    "bytes": 571714,
+    "sourceBytes": 3936441,
+    "sourceHash": "a610b033d5a418c1eacf12fec118db7cb6648bddc5d20a6f2c98b229ef9d236d",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/releases/CLOSE TO YOU-ZANX.png": {
+    "path": "assets/releases/CLOSE TO YOU-ZANX.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 517596,
+    "sourceBytes": 3198717,
+    "sourceHash": "01e8e96bb4256035f9674c11767a88b70ce7c13d666217150be99216c40aa5d5",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/releases/FALLING- DRAGHO & ZANX.png": {
+    "path": "assets/releases/FALLING- DRAGHO & ZANX.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 564992,
+    "sourceBytes": 3427793,
+    "sourceHash": "aad2f5e0277207bfc23e4643f8071f8072c906dbecf1ca5cc30ba661b2a4876f",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/releases/HAUNTED - DRAGHO.png": {
+    "path": "assets/releases/HAUNTED - DRAGHO.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 549660,
+    "sourceBytes": 3350942,
+    "sourceHash": "f107d48c7b00db394f303f9f117e98335998ce1a96a733f356365b74467cfd7b",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/releases/INSANEV2-ZANX.png": {
+    "path": "assets/releases/INSANEV2-ZANX.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 396076,
+    "sourceBytes": 2832666,
+    "sourceHash": "dd287967a82a8324433a5dcbee4917fa74ffb22b4bfd3458a1f76e4c03714d4c",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/releases/last-hour- dro.png": {
+    "path": "assets/releases/last-hour- dro.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 428384,
+    "sourceBytes": 2911143,
+    "sourceHash": "1c369b454f58d950114edfb7187bb1bb167a9d1a3ce82fc08fc4ddaa9617a654",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/releases/LET ME GO-ZANX.png": {
+    "path": "assets/releases/LET ME GO-ZANX.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 532562,
+    "sourceBytes": 3285441,
+    "sourceHash": "61c604390394f38662ba280ec6177e455b3e545db9931f3178617122c0429104",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/releases/MENTA-LACK.png": {
+    "path": "assets/releases/MENTA-LACK.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 721036,
+    "sourceBytes": 3934539,
+    "sourceHash": "8fea2f442f3707fa76a48c7a0c537962da37cb666d5ff33339925aeba55c957b",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/releases/SINGULARITY - FAYRE & DRO.png": {
+    "path": "assets/releases/SINGULARITY - FAYRE & DRO.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 574826,
+    "sourceBytes": 3366081,
+    "sourceHash": "5ee680f0f19678d834e3a561ad694d1b26345b0d0b95db96b6adffbaef049d25",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "assets/singularity.png": {
+    "path": "assets/singularity.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 574826,
+    "sourceBytes": 4034148,
+    "sourceHash": "f8d9841fb7ae676a3224251429817333fb0c300d6e7dd8ae8601bbd80b686ade",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "haunted.png": {
+    "path": "haunted.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 549660,
+    "sourceBytes": 4022642,
+    "sourceHash": "d7bf58f525878911d3b09d34be99c29c6545e502a3b2f66aa7df08db15001abe",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "logo-black.png": {
+    "path": "logo-black.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1458612,
+    "sourceBytes": 3213234,
+    "sourceHash": "756978abf794cd4f45443e18a42551ee6bc53a44371c31652c1b17ca9bc16a92",
+    "recipe": "webp-lossless-effort6"
+  },
+  "logo-white.png": {
+    "path": "logo-white.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 1254432,
+    "sourceBytes": 2993756,
+    "sourceHash": "185d822c9e0a240efa6b894ed9ce517fdd3d5d040bca7c642d5e3f55448183a9",
+    "recipe": "webp-lossless-effort6"
+  },
+  "promo-square.png": {
+    "path": "promo-square.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 568046,
+    "sourceBytes": 3780533,
+    "sourceHash": "a26219ac008226ede5cb5b6bb5b2ca4918ee71255c87895bdf0716b8d088f5c1",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "promo-vertical.png": {
+    "path": "promo-vertical.webp",
+    "width": 941,
+    "height": 1672,
+    "bytes": 571714,
+    "sourceBytes": 3936441,
+    "sourceHash": "a610b033d5a418c1eacf12fec118db7cb6648bddc5d20a6f2c98b229ef9d236d",
+    "recipe": "webp-q90-alpha100-effort6"
+  },
+  "singularity.png": {
+    "path": "singularity.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 574826,
+    "sourceBytes": 4034148,
+    "sourceHash": "f8d9841fb7ae676a3224251429817333fb0c300d6e7dd8ae8601bbd80b686ade",
+    "recipe": "webp-q90-alpha100-effort6"
+  }
+}

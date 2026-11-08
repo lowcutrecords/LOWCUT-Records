@@ -1,0 +1,182 @@
+[
+  {
+    "id": "menta",
+    "title": "Menta",
+    "artists": [
+      "Lack"
+    ],
+    "artistIds": [
+      "lack"
+    ],
+    "releaseDate": "2026-10-23",
+    "coverPath": "assets/releases/MENTA-LACK.png",
+    "previewPath": "assets/releases/menta lack best part.mp3",
+    "publicLink": "https://smartlink.musik.digital/menta",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": true,
+    "displayOrder": 1
+  },
+  {
+    "id": "closetoyou",
+    "slug": "closetoyou",
+    "title": "Close To You",
+    "artists": [
+      "Zanx"
+    ],
+    "artistIds": [
+      "zanx"
+    ],
+    "releaseDate": "2026-09-30",
+    "coverPath": "assets/releases/CLOSE TO YOU-ZANX.png",
+    "previewPath": "assets/releases/close to you best part.mp3",
+    "publicLink": "https://smartlink.musik.digital/close-to-you-923b9",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": false,
+    "displayOrder": 3,
+    "description": "",
+    "genre": "",
+    "credits": ""
+  },
+  {
+    "id": "haunted",
+    "slug": "haunted",
+    "title": "HAUNTED",
+    "artists": [
+      "Dragho"
+    ],
+    "artistIds": [
+      "dragho"
+    ],
+    "releaseDate": "2026-09-23",
+    "coverPath": "assets/releases/HAUNTED - DRAGHO.png",
+    "previewPath": "assets/releases/haunted best partmp3.mp3",
+    "publicLink": "https://smartlink.musik.digital/haunted-54205",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": false,
+    "displayOrder": 4,
+    "description": "",
+    "genre": "",
+    "credits": ""
+  },
+  {
+    "id": "insanev2",
+    "title": "Insane V2",
+    "artists": [
+      "Zanx"
+    ],
+    "artistIds": [
+      "zanx"
+    ],
+    "releaseDate": "2026-10-03",
+    "coverPath": "assets/releases/INSANEV2-ZANX.png",
+    "previewPath": "assets/releases/insane best part.mp3",
+    "publicLink": "https://smartlink.musik.digital/insane-v2",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": true,
+    "displayOrder": 4
+  },
+  {
+    "id": "lasthourep",
+    "slug": "lasthourep",
+    "title": "Last Hour",
+    "artists": [
+      "Dro feat. Fayre"
+    ],
+    "artistIds": [
+      "drofeatfayre"
+    ],
+    "releaseDate": "2026-10-21",
+    "coverPath": "assets/releases/last-hour- dro.png",
+    "previewPath": "assets/releases/last-hour best part.mp3",
+    "publicLink": "",
+    "label": "LOWCUT// Records",
+    "status": "coming_soon",
+    "visible": true,
+    "featured": false,
+    "displayOrder": 5,
+    "description": "",
+    "genre": "",
+    "credits": ""
+  },
+  {
+    "id": "falling",
+    "slug": "falling",
+    "title": "Falling",
+    "artists": [
+      "Dragho",
+      "Zanx"
+    ],
+    "artistIds": [
+      "dragho",
+      "zanx"
+    ],
+    "releaseDate": "2026-09-14",
+    "coverPath": "assets/releases/FALLING- DRAGHO & ZANX.png",
+    "previewPath": "assets/releases/falling best part.mp3",
+    "publicLink": "https://smartlink.musik.digital/falling-3fb3a",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": false,
+    "displayOrder": 6,
+    "description": "",
+    "genre": "",
+    "credits": ""
+  },
+  {
+    "id": "singularity",
+    "slug": "singularity",
+    "title": "Singularity",
+    "artists": [
+      "Dro",
+      "Fayre"
+    ],
+    "artistIds": [
+      "dro",
+      "fayre"
+    ],
+    "releaseDate": "2026-10-15",
+    "coverPath": "assets/releases/SINGULARITY - FAYRE & DRO.png",
+    "previewPath": "assets/releases/singularity best part.mp3",
+    "publicLink": "https://smartlink.musik.digital/singularity",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": false,
+    "displayOrder": 6,
+    "description": "",
+    "genre": "",
+    "credits": ""
+  },
+  {
+    "id": "letmego",
+    "slug": "let-me-go-zanx",
+    "title": "Let Me Go",
+    "artists": [
+      "Zanx"
+    ],
+    "artistIds": [
+      "zanx"
+    ],
+    "releaseDate": "2026-10-08",
+    "coverPath": "assets/releases/LET ME GO-ZANX.png",
+    "previewPath": "assets/releases/let me go best part.mp3",
+    "publicLink": "https://smartlink.musik.digital/let-me-go",
+    "label": "LOWCUT// Records",
+    "status": "released",
+    "visible": true,
+    "featured": false,
+    "displayOrder": 7,
+    "description": "",
+    "genre": "",
+    "credits": ""
+  }
+]

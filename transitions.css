@@ -1,0 +1,19 @@
+/* Native shared-image transitions keep navigation usable without JavaScript. */
+@view-transition{navigation:auto}
+::view-transition-group(*){animation-duration:.85s;animation-timing-function:cubic-bezier(.22,1,.36,1)}
+::view-transition-old(root){animation:lcPageOut .25s ease both}
+::view-transition-new(root){animation:lcPageIn .7s cubic-bezier(.22,1,.36,1) both}
+@keyframes lcPageOut{to{opacity:0;transform:translateY(-18px);filter:blur(5px)}}
+@keyframes lcPageIn{from{opacity:0;transform:translateY(32px);filter:blur(7px)}to{opacity:1;transform:none;filter:none}}
+@keyframes lcReveal{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.detail-hero h1{animation:lcReveal .8s .08s cubic-bezier(.22,1,.36,1) both}
+.detail-hero .detail-byline,.detail-hero .detail-meta{animation:lcReveal .8s .18s cubic-bezier(.22,1,.36,1) both}
+.hero-overlay .eyebrow{animation:lcReveal .8s .05s both}.hero-overlay h1{animation:lcReveal 1s .14s cubic-bezier(.22,1,.36,1) both}.hero-actions{animation:lcReveal .8s .3s both}
+.artist-card{transition:transform .5s cubic-bezier(.22,1,.36,1)}.artist-card img{transition:filter .6s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+@media(hover:hover) and (pointer:fine){.artist-card:hover{transform:translateY(-5px)}.artist-card:hover img{filter:contrast(1.07);transform:scale(1.008)}.profile-link,.button{transition:transform .25s ease}.profile-link:hover,.button:hover{transform:translateY(-3px)}}
+@media(prefers-reduced-motion:reduce){
+  @view-transition{navigation:none}
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+  .detail-hero h1,.detail-hero .detail-byline,.detail-hero .detail-meta,.hero-overlay .eyebrow,.hero-overlay h1,.hero-actions{animation:none!important}
+  .artist-card,.artist-card img,.profile-link,.button{transition:none!important;transform:none!important}
+}

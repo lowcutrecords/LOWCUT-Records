@@ -1,0 +1,155 @@
+[
+  {
+    "id": "fayre",
+    "slug": "fayre",
+    "name": "Fayre",
+    "aliases": [
+      "Fayre"
+    ],
+    "imagePath": "assets/artist-fayre.webp",
+    "taglineEn": "ELECTRONIC / SANTA FE",
+    "taglineEs": "ELECTRÓNICA / SANTA FE",
+    "location": "Santa Fe, Argentina",
+    "genres": [
+      "Electronic",
+      "Melodic Techno",
+      "House",
+      "Hard Techno"
+    ],
+    "bioEn": "Fayre is a young Argentinian electronic music producer from Santa Fe, bringing a fresh and distinctive energy to the emerging electronic scene. At 16, his sound moves through Melodic Techno, House and Hard Techno, driven by atmosphere, emotion and powerful club rhythms.\n\nHis approach is built around experimentation, immersive melodies, solid basslines and evolving arrangements. Rather than staying inside one genre, Fayre uses every release to explore a different side of electronic music while shaping a clear artistic identity.",
+    "bioEs": "Fayre es un joven productor argentino de música electrónica de Santa Fe, con una energía fresca y distintiva dentro de la escena emergente. A sus 16 años, su sonido se mueve entre el Melodic Techno, el House y el Hard Techno, impulsado por atmósferas, emoción y ritmos de club potentes.\n\nSu enfoque se basa en la experimentación, melodías inmersivas, bajos sólidos y arreglos en evolución. En lugar de limitarse a un solo género, Fayre utiliza cada lanzamiento para explorar una cara distinta de la música electrónica mientras construye una identidad artística clara.",
+    "links": [
+      {
+        "label": "Spotify",
+        "url": "https://open.spotify.com/artist/76mlxYbETXWKdxoI7GRnaE?si=66ff6a7d84e34dd2"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/prodfayre/"
+      }
+    ],
+    "visible": true,
+    "displayOrder": 1
+  },
+  {
+    "id": "dragho",
+    "slug": "dragho",
+    "name": "Dragho",
+    "aliases": [
+      "Dragho"
+    ],
+    "imagePath": "assets/artist-dragho.webp",
+    "taglineEn": "MELODIC / CHACO",
+    "taglineEs": "MELÓDICO / CHACO",
+    "location": "Chaco, Argentina",
+    "genres": [
+      "Electronic",
+      "Melodic"
+    ],
+    "bioEn": "Dragho is an Argentine electronic music producer from Chaco focused on melodic and club-oriented sounds. He blends emotional atmospheres with driving rhythms to create music that works on the dancefloor while remaining immersive and expressive.\n\nHis productions combine melodic richness and energetic beats, giving his work a distinctive identity within modern electronic music.",
+    "bioEs": "Dragho es un productor argentino de música electrónica de Chaco enfocado en sonidos melódicos y orientados al club. Combina atmósferas emocionales con ritmos enérgicos para crear música que funciona en la pista sin dejar de ser inmersiva y expresiva.\n\nSus producciones combinan riqueza melódica y beats enérgicos, dando a su trabajo una identidad distintiva dentro de la música electrónica moderna.",
+    "links": [
+      {
+        "label": "Spotify",
+        "url": "https://open.spotify.com/artist/0JnB8KPKlXNZmyIlJBfJeD?si=52bb1e65fb3d4db9"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/its_dragho/"
+      }
+    ],
+    "visible": true,
+    "displayOrder": 2
+  },
+  {
+    "id": "zanx",
+    "slug": "zanx",
+    "name": "Zanx",
+    "aliases": [
+      "Zanx"
+    ],
+    "imagePath": "assets/artist-zanx.webp",
+    "taglineEn": "PRODUCER / BEATMAKER",
+    "taglineEs": "PRODUCTOR / BEATMAKER",
+    "location": "Argentina",
+    "genres": [
+      "Trap",
+      "Phonk",
+      "Experimental"
+    ],
+    "bioEn": "Zanx is an Argentine producer and beatmaker whose sound is defined by energy, melody and atmosphere. Drawing from trap, phonk and experimental music, he gives each production a distinct identity.\n\nHe is currently preparing his debut EP as a producer, marking a new chapter in the evolution of his sound.",
+    "bioEs": "Zanx es un productor y beatmaker argentino cuyo sonido está definido por energía, melodía y atmósfera. Con influencias del trap, phonk y la música experimental, busca darle una identidad propia a cada producción.\n\nActualmente prepara su EP debut como productor, marcando una nueva etapa en la evolución de su sonido.",
+    "links": [
+      {
+        "label": "Spotify",
+        "url": "https://open.spotify.com/artist/3kNkYeTXHv4vFUU6YTiRJ1?si=6d120314f1924da4"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/emilio_schz00/"
+      }
+    ],
+    "visible": true,
+    "displayOrder": 3
+  },
+  {
+    "id": "dro",
+    "slug": "dro",
+    "name": "Dro",
+    "aliases": [
+      "Dro"
+    ],
+    "imagePath": "assets/artist-dro.webp",
+    "taglineEn": "TRAP / EXPERIMENTAL URBAN",
+    "taglineEs": "TRAP / URBANO EXPERIMENTAL",
+    "location": "Santa Fe, Argentina",
+    "genres": [
+      "Trap",
+      "Experimental urban"
+    ],
+    "bioEn": "Dro is a 15-year-old Argentine artist from Santa Fe who began making music in 2024. His work focuses on trap and experimental urban sounds, with a constant search for a personal identity within a new generation of emerging artists.\n\nHe currently works alongside Fayre on projects that connect electronic and urban influences through collaboration and experimentation.",
+    "bioEs": "Dro es un artista argentino de 15 años de Santa Fe que comenzó a hacer música en 2024. Su trabajo se centra en el trap y sonidos urbanos experimentales, con una búsqueda constante de identidad propia dentro de una nueva generación de artistas emergentes.\n\nActualmente trabaja junto a Fayre en proyectos que conectan influencias electrónicas y urbanas mediante colaboración y experimentación.",
+    "links": [
+      {
+        "label": "Spotify",
+        "url": "https://open.spotify.com/artist/6zXj00u3E5qVI0lc5r4Pqc?si=Kfy0Gn4HR52TyNLElRBL1A"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/p/DdSI_PKkT_B/"
+      }
+    ],
+    "visible": true,
+    "displayOrder": 4
+  },
+  {
+    "id": "lack",
+    "slug": "lack",
+    "name": "Lack",
+    "aliases": [
+      "Lack"
+    ],
+    "imagePath": "https://wimhurrorbnfekihqids.supabase.co/storage/v1/object/public/artist-media/6b41b0ab-2cfc-403d-ac19-bd1cea9e7583/gallery-738c9ab0-dcac-47dc-8b18-a4609d9915b0.jpg",
+    "taglineEn": "ROCK / CORRIENTES",
+    "taglineEs": "ROCK / INDIE",
+    "location": "Curuzú Cuatiá, Corrientes",
+    "genres": [
+      "Rock alternativo",
+      "indie rock"
+    ],
+    "bioEn": "Hailing from Curuzú Cuatiá, Corrientes, comes LACK—an alternative rock band formed by Franco Perrone and Benito González. Born from a friendship and a shared desire to create original music, the project blends the energy of guitars with an intimate, emotional sensibility.\n\nThrough afternoons spent in production, using borrowed instruments and drawing from shared influences, Franco and Benito discovered a sound that truly represents them: songs that transform their thoughts, memories, and feelings into a way to connect with others.\n\nToday, they begin a new chapter with LOWCUT// Records, releasing “Menta”—their first project under the label. It marks an opportunity to share their music with a wider audience and continue writing their story, one song at a time.",
+    "bioEs": "Desde Curuzú Cuatiá, Corrientes, llega LACK, una banda de rock alternativo formada por Franco Perrone y Benito González. Nacido de una amistad y de las ganas de crear música propia, el proyecto combina la energía de las guitarras con una sensibilidad íntima y emocional.\n\nEntre tardes de producción, instrumentos prestados e influencias compartidas, Franco y Benito encontraron un sonido que los representa: canciones que transforman sus pensamientos, recuerdos y sentimientos en una forma de conectar con otros.\n\nHoy comienzan una nueva etapa junto a LOWCUT// Records con “Menta”, su primer lanzamiento con el sello. Una oportunidad para compartir su música con más personas y seguir escribiendo su historia, una canción a la vez.",
+    "links": [
+      {
+        "label": "Spotify",
+        "url": "https://open.spotify.com/artist/7Cy8vGLCAUCWsPBhxu11A9?si=66fb7245c51e4b8c"
+      },
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/lack.musica/"
+      }
+    ],
+    "visible": true,
+    "displayOrder": 5
+  }
+]
