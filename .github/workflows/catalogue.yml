@@ -4,6 +4,9 @@ on:
     branches: [main]
     paths:
       - scripts/site-config.mjs
+      - scripts/legal-pages.mjs
+      - src/legal-content.mjs
+      - legal.css
   workflow_dispatch:
     inputs:
       publish:

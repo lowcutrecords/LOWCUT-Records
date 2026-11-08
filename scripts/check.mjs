@@ -3,6 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
+import {legalRoutes} from '../src/legal-content.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 import {base as basePath,siteUrl as base} from './site-config.mjs';
 const manifest=JSON.parse(await fs.readFile(path.join(root,'data/generated-pages.json'),'utf8'));
@@ -16,6 +17,7 @@ for(const file of files){
   assert(!html.includes('/LOWCUT-Records/'),`Legacy project path: ${file}`);
   const route=file==='index.html'?'':file.replace(/index\.html$/,'');
   const localized=/^(en|es)\//.test(file);
+  const legalType=Object.keys(legalRoutes).find(type=>Object.values(legalRoutes[type]).includes(route));
   const expected=base+(localized?route:'en/'+route);
   const title=html.match(/<title>(.*?)<\/title>/)?.[1];
   const description=html.match(/<meta name="description" content="([^"]+)"/)?.[1];
@@ -26,9 +28,12 @@ for(const file of files){
   assert(sitemap.includes(`<loc>${expected}</loc>`),`Sitemap: ${file}`);
   for(const language of ['en','es']){
     const logical=localized?route.slice(3):route;
-    assert(html.includes(`hreflang="${language}" href="${base+language+'/'+logical}"`),`Language alternate: ${file}`);
+    const alternate=legalType?legalRoutes[legalType][language]:language+'/'+logical;
+    assert(html.includes(`hreflang="${language}" href="${base+alternate}"`),`Language alternate: ${file}`);
   }
   assert(html.includes('cursor.js')&&html.includes('cursor.css')&&html.includes('class="custom-cursor"'),`Shared cursor: ${file}`);
+  const lang=html.match(/<html lang="(en|es)"/)?.[1]||'en';
+  for(const type of Object.keys(legalRoutes))assert(html.includes(`href="${basePath+legalRoutes[type][lang]}"`),`Legal link: ${file}`);
   if(localized)assert(html.includes(`<html lang="${file.slice(0,2)}">`),`HTML language: ${file}`);
   const structured=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1]||'null');
   assert(structured?.['@context']==='https://schema.org'&&Array.isArray(structured['@graph']),`Structured data: ${file}`);

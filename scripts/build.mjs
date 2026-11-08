@@ -5,6 +5,7 @@ import {cleanCatalogue,readPublicCollection} from './catalogue.mjs';
 import {localizedPages} from './localize.mjs';
 import {structuredData} from './structured-data.mjs';
 import {responsiveImages} from './responsive-images.mjs';
+import {addLegalPages} from './legal-pages.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 import {base,origin} from './site-config.mjs';
@@ -112,6 +113,7 @@ for (const r of releases) {
 }
 const localized=localizedPages(pages,{artists,releases,template,base,origin,partners});
 pages=localized.pages;
+pages=addLegalPages(pages,{base,origin,commonStyle,canonicalRoutes:localized.canonicalRoutes});
 pages=responsiveImages(pages,{variants:imageVariants,base});
 pages=structuredData(pages,{artists,releases,base,origin,artistPath,releasePath,image:optimized});
 const routes=localized.canonicalRoutes;
@@ -120,7 +122,7 @@ const sitemap=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www
 let previous=[];
 try { previous=JSON.parse(await fs.readFile(path.join(root,'data/generated-pages.json'),'utf8')); } catch(e) { if(e.code!=='ENOENT')throw e; }
 for(const old of previous) {
-  if(!/^(?:(?:en|es)\/)?(?:(?:artistas|lanzamientos)\/[a-z0-9-]+\/)?index\.html$/.test(old))throw new Error('Invalid previous page path');
+  if(!/^(?:(?:en|es)\/)?(?:(?:artistas|lanzamientos)\/[a-z0-9-]+\/|(?:privacidad|privacy|terminos-de-uso|terms-of-use)\/)?index\.html$/.test(old))throw new Error('Invalid previous page path');
   if(!pages.has(old))await fs.rm(path.join(root,old),{force:true});
 }
 for(const [name,html] of pages) { await fs.mkdir(path.dirname(path.join(root,name)),{recursive:true}); await fs.writeFile(path.join(root,name),html); }
