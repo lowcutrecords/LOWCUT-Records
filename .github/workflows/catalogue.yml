@@ -29,6 +29,8 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run test
       - run: npm run build:fresh
+        env:
+          ENABLE_PARTNER_SYNC: ${{ vars.ENABLE_PARTNER_SYNC }}
       - run: npm run check
       - id: package
         run: node scripts/package-site.mjs --compare-live
