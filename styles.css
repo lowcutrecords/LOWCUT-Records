@@ -24,3 +24,6 @@
 /* Contact logo cleanup v9 */
 .contact-mark{padding:0;background:transparent;border:0;overflow:visible;display:flex;align-items:center;justify-content:center;min-height:0}
 .contact-mark img{display:block;width:auto;max-width:100%;height:auto;object-fit:contain;border:0;box-shadow:none}
+
+/* Dimensions describe intrinsic proportions; CSS controls the rendered height. */
+img{height:auto}
